@@ -7,7 +7,10 @@ import ApiTestSection from '@/components/ApiTestSection';
 import ChatSection from '@/components/ChatSection';
 import { Separator } from '@/components/ui/separator';
 
-const APP_CLIENT_ID = import.meta.env.VITE_APP_CLIENT_ID;
+const APP_CLIENT_ID = import.meta.env.VITE_APP_CLIENT_ID as string;
+const AUTH_SERVER_URL = import.meta.env.VITE_AUTH_SERVER_URL as string;
+const APP_URL = import.meta.env.VITE_APP_URL as string;
+const BASE_PATH = import.meta.env.VITE_BASE_PATH as string;
 
 function SampleAppContent() {
   return (
@@ -38,14 +41,20 @@ function SampleAppContent() {
 export default function App() {
   const client = useMemo(() => {
     return new WebUIClient(APP_CLIENT_ID, {
-      authServerUrl: 'https://main-id.getbodhi.app/realms/bodhi',
-      redirectUri: `${window.location.origin}/callback`,
+      authServerUrl: AUTH_SERVER_URL,
+      redirectUri: `${APP_URL}${BASE_PATH}callback`,
+      basePath: BASE_PATH,
       logLevel: 'debug',
     });
   }, []);
 
   return (
-    <BodhiProvider client={client} logLevel="debug">
+    <BodhiProvider
+      client={client}
+      basePath={BASE_PATH}
+      callbackPath={`${BASE_PATH}callback`}
+      logLevel="debug"
+    >
       <SampleAppContent />
     </BodhiProvider>
   );

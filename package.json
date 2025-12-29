@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@bodhiapp/bodhi-js": "^0.0.2",
-    "@bodhiapp/bodhi-js-react": "^0.0.2",
+    "@bodhiapp/bodhi-js": "^0.0.5",
+    "@bodhiapp/bodhi-js-react": "^0.0.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.562.0",
