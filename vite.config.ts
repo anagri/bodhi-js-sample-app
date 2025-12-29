@@ -7,13 +7,13 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
   // Validate required environment variables
-  const required = ['APP_CLIENT_ID', 'AUTH_SERVER_URL', 'APP_URL']
+  const required = ['APP_CLIENT_ID', 'AUTH_SERVER_URL', 'APP_URL', 'BASE_PATH']
   const missing = required.filter(key => !env[key])
   if (missing.length > 0) {
     throw new Error(`Missing required environment variables: ${missing.join(', ')}`)
   }
 
-  const basePath = env.BASE_PATH || '/bodhi-js-sample-app/'
+  const basePath = env.BASE_PATH
 
   return {
     plugins: [react()],
